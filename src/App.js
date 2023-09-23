@@ -92,7 +92,7 @@ function App() {
     
     fetch(MOCK_API_URL, {
       method: 'POST',
-      headers: {"Content-Type": "application/json"},
+      headers: {"Content-Type": "application/json"},//This is for backend
       body: JSON.stringify({
         payCheck: newPayCheck,
         tax: newTotalTax,
@@ -105,12 +105,6 @@ function App() {
   function updateUser(e, userObject){
     //Part 1. Create 4 functions, getUsers(){}, deleteUser(){}, updateUser(){}, and postNewUser(){}.
 //     //Part 4: Setting up UPDATE ------------------------*/
-
-// /** Disclaimer: There are MANY ways to handle UPDATE.
-//  *              This is only one way. We will be creating a form for each user,
-//  *              passing in a userObject to our updateUser() function, then updating the user with fetch()
-//  *
-//  *              Consider other ways after the lab is completed.
 //  *
 //  * Step 1: Set up fetch() to UPDATE in our updateUser() function.
 //  *         Pass in userObject as a parameter.
@@ -157,6 +151,7 @@ function App() {
         <h3 className= "header">POST new Pay Check</h3>
         
         <label className="container">Total Paycheck</label>
+        {/* Label is on top, input is bottom that has the e.target.value to get it initiated */}
         <input onChange={(e) => setNewPayCheck(e.target.value)}></input>
         <br></br>
         <br></br>
@@ -184,11 +179,12 @@ function App() {
  *         It's not in a form, so we don't need event.preventDefault()
  *
  *         use .then(() => getUsers()) after our fetch to re-render the
- *         page with the updated information.  */}
+ *         page with the updated information. Changed line 183 to match what I had to be called in the app */}
             payCheck: {user.payCheck}
             totalTax: {user.tax}
             totalSaving:{user.totalSaving}
             <button  className="button"onClick={() =>deleteUser(user.id)}>Delete</button>
+            {/* This is a part of the map that is calling the function.  I am proud of my button class, I got the buttons less close*/}
           </div>
           <form>
           {/* Part 5 connecting all the pieces, Step 4: Connecting our UPDATE:
@@ -204,7 +200,8 @@ function App() {
  *          Include a button at the bottom (this will update on click) */}
             <h3>Update This Paycheck</h3>
             <label  className="container">Update Pay Check-after tax</label>
-            <input onChange={(e) => setUpdatedPayCheck(e.target.value)}></input>
+            <input onChange={(e) => setUpdatedPayCheck(e.target.value)}></input> 
+            {/* This was Part 5 #2, we have to stay in our map function for label, input I added classes*/}
             <br></br>
             <br></br>
             <label  className="container">Update Total Tax</label><br></br>
@@ -217,15 +214,7 @@ function App() {
             {/* //setUpdatedJobTitle fixed to updateUser to get to light up*/}
           </form>
         </div>
-    // 5)   Test it out! Your update should now be working!
-    // *          Make sure the page is re-rendering with the updated information
-    // *          and not refreshing the page.
-    // *
-    // * Optional: Set the input values in your update form to be equal to user.name/user.jobTitle etc,
-    // *           so they don't initially submit empty strings.
-    // *
-    // */
-
+    
       ))}
     </div>
   )
