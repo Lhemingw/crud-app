@@ -1,5 +1,35 @@
-.App {
-  text-align: center;
+body {
+  background-color: aliceblue;
+}
+
+.userContainer {
+  display: flex;
+  margin-top: 2em;
+  border: 5px solid green;
+  padding: 5px;
+}
+.header {
+  padding: 50px;
+  text-align-last: left;
+  background: #3ac0a5;
+  color: white;
+  font-size: 30px;
+ 
+}
+
+.flex-container {
+  display: flex;
+  justify-content: left;
+  text-align: center;  
+}
+
+.container {
+  border: #000; /* Add a border around the container */ 
+  padding: 10px; /* Add some padding for spacing */
+  margin: 10px; /* Add margin to separate containers */
+}
+.button{
+margin-left: 10px;
 }
 
 .App-logo {
@@ -7,11 +37,7 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-header {
   background-color: #282c34;

@@ -20,7 +20,7 @@ import { useState, useEffect } from 'react'
 
 function App() {
   /* -- YOUR CODE/CRUD OPERATIONS HERE --*/
-    const [ users, setUsers,  ] =useState([{}])
+    const [ users, setUsers  ] =useState([])
     //Part 3: Setting up POST
 //     Step 2: Create 3 new variables with useState(): newUserName, newUserJobTitle, newUserCompanyName
 //  *
@@ -47,7 +47,8 @@ function App() {
   //etch documentation: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
  //Make sure you set up a API that you can CRUD to, such as mockAPI or use a JSON server like in the week 11/12 labs.
  //https://6508f19656db83a34d9cc4d8.mockapi.io/FAKE-API
-  const MOCK_API_URL = 'https://6508f19656db83a34d9cc4d8.mockapi.io/todo'
+  const MOCK_API_URL = 'https://64e55febc55563802914592e.mockapi.io/Finances'
+  //'https://6508f19656db83a34d9cc4d8.mockapi.io/todo'
   //Create 4 functions, getUsers(){}, deleteUser(){}, updateUser(){}, and postNewUser(){}.
   function getUsers(){
    //Step 2: In our getUsers function:
@@ -66,7 +67,7 @@ function App() {
   // .then(data => setUsers(data))
   }
   useEffect(()=> {
-    //getUsers() Was this doing the reiteration?
+    getUsers() //Was this doing the reiteration?
     //console.log(users);
   }, [])
   
@@ -93,7 +94,7 @@ function App() {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-        paycheck: newPayCheck,
+        payCheck: newPayCheck,
         tax: newTotalTax,
         totalSaving: newTotalSaving
       })
@@ -153,19 +154,20 @@ function App() {
  *         If not, your hint in how is in Part 2: Setting up DELETE
  **/}
       <form>
-        <h3>POST new Pay Check</h3>
-        <label>Total Paycheck</label>
+        <h3 className= "header">POST new Pay Check</h3>
+        
+        <label className="container">Total Paycheck</label>
         <input onChange={(e) => setNewPayCheck(e.target.value)}></input>
         <br></br>
         <br></br>
-        <label>Total Tax</label><br></br>
+        <label className="container">Total Tax</label>
         <input onChange={(e) => setNewTotalTax(e.target.value)}></input>
       <br></br>
       <br></br>
-        <label>Total Saving</label>
-    <br></br>
+        <label className="container">Total Saving</label>
         <input onChange={(e) => setNewTotalSaving(e.target.value)}></input>
-        <button onClick={(e) => postNewUser(e)}>submit</button>
+        <button className="button"onClick={(e) => postNewUser(e)}>submit</button>
+      
       </form>
         <h2>Add Calculator here</h2>
       {/* CODE BELOW: PART 5.1: Connecting our GET  //  PART 5.4: Connecting our UPDATE */}
@@ -173,8 +175,8 @@ function App() {
 {/* //  * Step 1:  Connecting our GET:
 //  *
 //  *          .map over our users variable and display every users name/jobTitle/companyName */} 
-      {users.map((user, index)=>(
-        <div key={index}>
+      {users.map((user, index)=>( //future note, Move into a table row, for each array along with map
+        <div className="userContainer"key={index}>
           <div>
           {/* Step 2: Connecting our DELETE:
  *
@@ -183,10 +185,10 @@ function App() {
  *
  *         use .then(() => getUsers()) after our fetch to re-render the
  *         page with the updated information.  */}
-            PayCheck: {user.payCheck}
-            TotalTax: {user.totalTax}
-            TotalSaving:{user.totalSaving}
-            <button onClick={() =>deleteUser(user.id)}>Delete</button>
+            payCheck: {user.payCheck}
+            totalTax: {user.tax}
+            totalSaving:{user.totalSaving}
+            <button  className="button"onClick={() =>deleteUser(user.id)}>Delete</button>
           </div>
           <form>
           {/* Part 5 connecting all the pieces, Step 4: Connecting our UPDATE:
@@ -201,17 +203,17 @@ function App() {
  *          Update name, update job title, update company name.
  *          Include a button at the bottom (this will update on click) */}
             <h3>Update This Paycheck</h3>
-            <label>Update Pay Check-after tax</label>
+            <label  className="container">Update Pay Check-after tax</label>
             <input onChange={(e) => setUpdatedPayCheck(e.target.value)}></input>
             <br></br>
             <br></br>
-            <label>Update Total Tax</label><br></br>
+            <label  className="container">Update Total Tax</label><br></br>
             <input onChange={(e) => setUpdatedTotalTax(e.target.value)}></input>
             <br></br>
             <br></br>
-            <label>updated Total Saving</label><br></br>
+            <label  className="container">Updated Total Saving</label><br></br>
             <input onChange={(e) => setUpdatedTotalSaving(e.target.value)}></input>
-            <button onClick={(e) => updateUser(e, user)}>Update User</button>
+            <button className="button" onClick={(e) => updateUser(e, user)}>Update User</button>
             {/* //setUpdatedJobTitle fixed to updateUser to get to light up*/}
           </form>
         </div>
